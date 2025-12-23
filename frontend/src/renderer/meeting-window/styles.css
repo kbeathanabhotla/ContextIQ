@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: transparent;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Make the window draggable */
+    -webkit-app-region: drag;
+}
+
+.meeting-container {
+    background: rgba(44, 62, 80, 0.9);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    /* Container is draggable */
+    -webkit-app-region: drag;
+}
+
+.meeting-controls {
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+    /* Controls area should allow dragging when clicking between buttons */
+    -webkit-app-region: drag;
+}
+
+.btn-assist,
+.btn-end {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    min-width: 200px;
+    /* Buttons should not be draggable - allow click events */
+    -webkit-app-region: no-drag;
+}
+
+.btn-assist {
+    background: #3498db;
+    color: white;
+}
+
+.btn-assist:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+}
+
+.btn-assist:active {
+    transform: translateY(0);
+}
+
+.btn-end {
+    background: #e74c3c;
+    color: white;
+}
+
+.btn-end:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
+}
+
+.btn-end:active {
+    transform: translateY(0);
+}
+

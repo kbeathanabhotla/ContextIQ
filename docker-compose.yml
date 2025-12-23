@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: contextiq_postgres
+    environment:
+      POSTGRES_USER: contextiq_user
+      POSTGRES_PASSWORD: contextiq_password
+      POSTGRES_DB: contextiq_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U contextiq_user -d contextiq_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: contextiq_backend
+    ports:
+      - "5000:5000"
+    environment:
+      DATABASE_URL: postgresql://contextiq_user:contextiq_password@postgres:5432/contextiq_db
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: contextiq_user
+      POSTGRES_PASSWORD: contextiq_password
+      POSTGRES_DB: contextiq_db
+      FLASK_APP: app.py
+      FLASK_ENV: development
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+    command: sh -c "python wait_for_postgres.py && python app.py"
+

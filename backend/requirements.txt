@@ -1,0 +1,12 @@
+Flask==3.0.0
+Flask-SQLAlchemy==3.1.1
+Flask-CORS==4.0.0
+psycopg2-binary==2.9.9
+python-dotenv==1.0.0
+flask-socketio==5.3.6
+transformers>=4.40.0
+torch>=2.0.0
+torchaudio>=2.0.0
+numpy>=1.24.0
+soundfile>=0.12.1
+

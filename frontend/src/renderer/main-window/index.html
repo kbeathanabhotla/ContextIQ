@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ContextIQ - Main Window</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Left Pane -->
+        <div class="left-pane">
+            <div class="pane-header">
+                <h2>Navigation</h2>
+            </div>
+            <div class="nav-buttons">
+                <button id="btn-users" class="nav-btn">Manage Profiles</button>
+                <button id="btn-meetings" class="nav-btn active">Past Meetings</button>
+            </div>
+            <div class="action-section">
+                <button id="btn-new-meeting" class="btn-primary">New Meeting</button>
+            </div>
+        </div>
+
+        <!-- Right Pane -->
+        <div class="right-pane">
+            <!-- Profiles View -->
+            <div id="users-view" class="content-view">
+                <div class="view-header">
+                    <h2>Profile Management</h2>
+                    <button id="btn-add-user" class="btn-secondary">Add Profile</button>
+                </div>
+                <div id="users-list" class="content-list">
+                    <!-- Profiles will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Meetings View -->
+            <div id="meetings-view" class="content-view active">
+                <div class="view-header">
+                    <h2>Past Meetings</h2>
+                </div>
+                <div id="meetings-list" class="content-list">
+                    <!-- Meetings will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Profile Modal -->
+    <div id="user-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-title">Add Profile</h2>
+            <form id="user-form">
+                <input type="hidden" id="user-id">
+                <div class="form-group">
+                    <label for="profile_name">Profile Name:</label>
+                    <input type="text" id="profile_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="meeting_context">Meeting Context:</label>
+                    <textarea id="meeting_context" rows="5" placeholder="Enter context for meetings using this profile..."></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Save</button>
+                    <button type="button" class="btn-secondary" id="btn-cancel">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Profile Selection Modal for New Meeting -->
+    <div id="profile-select-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeProfileSelectionModal()">&times;</span>
+            <h2>Select Profile for Meeting</h2>
+            <div id="profile-select-list" class="profile-select-list">
+                <!-- Profiles will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Meeting Details Modal -->
+    <div id="meeting-details-modal" class="modal">
+        <div class="modal-content meeting-details-content">
+            <span class="close" onclick="closeMeetingDetailsModal()">&times;</span>
+            <h2 id="meeting-details-title">Meeting Details</h2>
+            <div id="meeting-details-body">
+                <!-- Meeting details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>
+
